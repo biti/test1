@@ -21,7 +21,11 @@
                     <a href="#campaign" data-i18n="nav.campaign">大片</a>
                     <a href="#contact" data-i18n="nav.contact">联系</a>
                 </nav>
-                <button class="lang-toggle" type="button" aria-label="Switch language">EN</button>
+                <div class="lang-toggle" role="group" aria-label="Language selector">
+                    <button class="lang-option active" type="button" data-lang="zh">中文</button>
+                    <span class="lang-divider" aria-hidden="true">/</span>
+                    <button class="lang-option" type="button" data-lang="en">EN</button>
+                </div>
             </div>
         </div>
     </header>
@@ -307,7 +311,7 @@
             }
         };
 
-        const toggleButton = document.querySelector('.lang-toggle');
+        const toggleGroup = document.querySelector('.lang-toggle');
         let currentLang = 'zh';
 
         function applyLanguage(lang) {
@@ -337,15 +341,25 @@
                 }
             });
 
-            if (toggleButton) {
-                toggleButton.textContent = lang === 'zh' ? 'EN' : '中文';
-                toggleButton.setAttribute('aria-label', lang === 'zh' ? 'Switch to English' : '切换为中文');
+            if (toggleGroup) {
+                toggleGroup.querySelectorAll('.lang-option').forEach((button) => {
+                    const isActive = button.dataset.lang === lang;
+                    button.classList.toggle('active', isActive);
+                    button.setAttribute('aria-pressed', isActive);
+                });
             }
         }
 
-        if (toggleButton) {
-            toggleButton.addEventListener('click', () => {
-                currentLang = currentLang === 'zh' ? 'en' : 'zh';
+        if (toggleGroup) {
+            toggleGroup.addEventListener('click', (event) => {
+                const target = event.target;
+                if (!(target instanceof HTMLElement)) return;
+                if (!target.classList.contains('lang-option')) return;
+
+                const selectedLang = target.dataset.lang;
+                if (!selectedLang || selectedLang === currentLang) return;
+
+                currentLang = selectedLang;
                 applyLanguage(currentLang);
             });
         }

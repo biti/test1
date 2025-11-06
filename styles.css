@@ -82,24 +82,50 @@ img {
 }
 
 .lang-toggle {
-    padding: 10px 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
     border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.45);
-    background: transparent;
+    background: rgba(12, 12, 12, 0.25);
     color: #fff;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
     font-size: 0.75rem;
     font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    backdrop-filter: blur(12px);
 }
 
-.lang-toggle:hover,
-.lang-toggle:focus {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.7);
+.lang-option {
+    border: none;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 4px 2px;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.lang-option:hover,
+.lang-option:focus {
+    color: #fff;
+    opacity: 0.85;
     outline: none;
+}
+
+.lang-option.active {
+    color: #fff;
+    opacity: 1;
+}
+
+.lang-option:not(.active) {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.lang-divider {
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.45);
 }
 
 main {
