@@ -49,11 +49,13 @@ img {
     justify-content: space-between;
 }
 
+
 .nav-actions {
     display: flex;
     align-items: center;
     gap: 24px;
 }
+
 
 .logo {
     font-family: 'Playfair Display', serif;
@@ -127,6 +129,7 @@ img {
     font-size: 0.8em;
     color: rgba(255, 255, 255, 0.45);
 }
+
 
 main {
     margin-top: 100px;
@@ -543,9 +546,11 @@ textarea::placeholder {
         display: none;
     }
 
+
     .nav-actions {
         justify-content: flex-end;
     }
+
 
     .story-content,
     .campaign-content,
